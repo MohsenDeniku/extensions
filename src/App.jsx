@@ -19,9 +19,10 @@ function App() {
     }
 
     function handleSearch(event) {
-        if (event.target.value === "") {
-            setDataCopy(mainData.current)
-        } else {
+        if (event.target.value) {
+            setDataCopy(dataCopy.filter(item => item.name.toLowerCase()
+                .includes(event.target.value.toLowerCase())))
+         } else {
             setDataCopy(mainData.current.filter(item => item.name.toLowerCase()
                 .includes(event.target.value.toLowerCase())))
             // console.log(mainData.current.filter(item => item.name.toLowerCase()
