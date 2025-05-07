@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 
 export default function MainContainer({mainData, data, setData, darkMode}) {
     const [result, setResult] = useState(mapping(mainData))
+    const [activeBtn, setActiveBtn] = useState("all")
 
     function toggleActive(id) {
         setData(prev => {
@@ -42,10 +43,13 @@ export default function MainContainer({mainData, data, setData, darkMode}) {
     function render(filter = 'all') {
         if (filter === "active") {
             setResult(mapping(data.filter(item => item.isActive)))
+            setActiveBtn("active")
         } else if (filter === "inactive") {
             setResult(mapping(data.filter(item => !item.isActive)))
+            setActiveBtn("inactive")
         } else {
             setResult(mapping(data))
+            setActiveBtn("all")
         }
     }
 
@@ -57,9 +61,9 @@ export default function MainContainer({mainData, data, setData, darkMode}) {
             <div className={`main-container-top ${darkMode ? "dark" : ""}`}>
                 <h1>Extensions List</h1>
                 <div className={`main-container-top-states ${darkMode ? "dark" : ""}`}>
-                    <button onClick={() => render("all")}>All</button>
-                    <button onClick={() => render("active")}>Active</button>
-                    <button onClick={() => render("inactive")}>Inactive</button>
+                    <button className={`filter-btn ${activeBtn === 'all' ? 'active-btn' : ''}`} onClick={() => render("all")}>All</button>
+                    <button className={`filter-btn ${activeBtn === 'active' ? 'active-btn' : ''}`} onClick={() => render("active")}>Active</button>
+                    <button className={`filter-btn ${activeBtn === 'inactive' ? 'active-btn' : ''}`} onClick={() => render("inactive")}>Inactive</button>
                 </div>
             </div>
             <div className="main-container-content">
