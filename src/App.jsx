@@ -17,15 +17,13 @@ function App() {
     function toggleTheme() {
         setDarkMode(prevTheme => !prevTheme)
     }
-
+    
     function handleSearch(event) {
-        if (event.target.value === "") {
-            setDataCopy(mainData.current)
-        } else {
-            setDataCopy(mainData.current.filter(item => item.name.toLowerCase()
+        if (event.target.value) {
+            setDataCopy(dataCopy.filter(item => item.name.toLowerCase()
                 .includes(event.target.value.toLowerCase())))
-            // console.log(mainData.current.filter(item => item.name.toLowerCase()
-            //     .includes(event.target.value.toLowerCase())))
+        } else {
+            setDataCopy(mainData.current)
         }
         console.log(mainData)
     }
