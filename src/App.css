@@ -66,7 +66,7 @@ header {
 .main-container {
   margin-top: 60px;
   max-width: 1000px;
-  padding-bottom: 50px;
+  padding-bottom: 15px;
 }
 
 .main-container-top {
@@ -222,25 +222,7 @@ main-container-top-states.dark > button:focus {
   color: black;
 }
 
-/* Reponsiveness */
-@media (max-width: 850px) {
-  .main-container-content {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .app-container {
-    width: unset;
-    padding: 20px;
-  }
-}
 
-@media (max-width: 600px) {
-  .main-container-content {
-    grid-template-columns: 1fr;
-  }
-  .main-container-top-states > button {
-    font-size: 0.9rem;
-  }
-}
 
 button.filter-btn:hover:not(.active-btn) {
   background-color: #ffa053;
@@ -321,4 +303,40 @@ button.active-btn {
 }
 .cancel-btn:hover {
   background-color: #0196c4;
+}
+/* Footer */
+footer {
+  color: black;
+  padding-bottom: 50px;
+  text-align: center;
+}
+footer.dark {
+  background-color: #060c22;
+  color: black;
+}
+footer.dark p {
+  color: white;
+}
+footer.dark a {
+  color: #d9534f;
+}
+
+/* Reponsiveness */
+@media (max-width: 850px) {
+  .main-container-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .app-container {
+    width: unset;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-container-content {
+    grid-template-columns: 1fr;
+  }
+  .main-container-top-states > button {
+    font-size: 0.9rem;
+  }
 }
