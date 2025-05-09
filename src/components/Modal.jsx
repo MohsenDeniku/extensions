@@ -4,7 +4,7 @@ export default function Modal({ message, name, image, onConfirm, onCancel, darkM
             <div className={`modal ${darkMode ? "dark" : ""}`}>
                 <div className="modal-extension">
                     <img src={image} alt="extension image" />
-                    <p>{name}</p>
+                    <h2>{name}</h2>
                 </div>
                 <p>{message}</p>
                 <div className="modal-buttons">
