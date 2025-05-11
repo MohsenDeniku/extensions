@@ -37,7 +37,7 @@ header {
 
 .search-bar {
   padding: 10px 15px;
-  width: 30%;
+  width: 50%;
   transition: all 0.35s ease-in-out;
   background-color: white;
   border-radius: 40px;
@@ -257,7 +257,9 @@ main-container-top-states.dark > button:focus {
 }
 
 
-
+button.filter-btn {
+  transition: all 0.2s ease-in-out;
+}
 button.filter-btn:hover:not(.active-btn) {
   background-color: #ffa053;
   color: white;
@@ -368,9 +370,21 @@ footer.dark a {
     width: unset;
     padding: 20px;
   }
+  .search-bar {
+    width: 45%;
+  }
+  .search-bar:focus {
+    width: 55%;
+  }
 }
 
 @media (max-width: 600px) {
+  .search-bar {
+    width: 30%;
+  }
+  .search-bar:focus {
+    width: 40%;
+  }
   .main-container-content {
     grid-template-columns: 1fr;
   }

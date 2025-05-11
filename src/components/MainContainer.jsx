@@ -1,9 +1,9 @@
 import Extension from "./Extension.jsx";
 import {useEffect, useState} from "react";
 
-export default function MainContainer({mainData, data, setData, darkMode}) {
-    const [result, setResult] = useState(mapping(mainData))
-    const [activeBtn, setActiveBtn] = useState("all")
+export default function MainContainer({mainData, currentSearch, handleSearch, currentFilter, data, setData, darkMode}) {
+    const [result, setResult] = useState(mapping(mainData.current))
+    const [activeBtn, setActiveBtn] = useState(currentFilter.current)
     
     function toggleActive(id) {
         setData(prev => {
@@ -14,15 +14,15 @@ export default function MainContainer({mainData, data, setData, darkMode}) {
             })
             return prev
         })
-        mainData = mainData.map(item => item.name === id ? {...item, isActive: !item.isActive} : item)
+        mainData.current = mainData.current.map(item => item.name === id ? {...item, isActive: !item.isActive} : item)
     }
 
     function deleteExtension(id) {
         setData(prev => {
             return prev.filter(item => item.name !== id)
         })
-        mainData = mainData.filter(item => item.name !== id)
-        console.log(mainData)
+        mainData.current = mainData.current.filter(item => item.name !== id)
+        console.log(mainData.current)
     }
 
     function mapping(arr) {
@@ -44,12 +44,18 @@ export default function MainContainer({mainData, data, setData, darkMode}) {
         if (filter === "active") {
             setResult(mapping(data.filter(item => item.isActive)))
             setActiveBtn("active")
+            currentFilter.current = "active"
+            handleSearch({target: {value: currentSearch}})
         } else if (filter === "inactive") {
             setResult(mapping(data.filter(item => !item.isActive)))
             setActiveBtn("inactive")
+            currentFilter.current = "inactive"
+            handleSearch({target: {value: currentSearch}})
         } else {
             setResult(mapping(data))
             setActiveBtn("all")
+            currentFilter.current = "all"
+            handleSearch({target: {value: currentSearch}})
         }
     }
 
